@@ -1,0 +1,2 @@
+#!/bin/bash
+find . -type f -iname "*.gif" -exec ls -lS {} + | awk -F'/' '{print $NF}' | sort -f
