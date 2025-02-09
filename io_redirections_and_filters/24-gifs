@@ -1,9 +1,2 @@
 #!/bin/bash
-find . -type f -iname "*.gif" -printf "%f\n" | rev | cut -d. -f2- | rev | LC_ALL=C sort -f | while read f
-do
-  if [[ "$f" != *.* ]]
-  then
-    echo "$f"
-  fi
-done
-
+find . -type f -iname "*.gif" | rev | cut -d. -f2- | rev | sort -f
