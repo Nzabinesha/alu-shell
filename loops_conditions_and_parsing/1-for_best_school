@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# This script displays "Best School" 10 times using an for  loop.
-for i in {1..10}
-do
-  echo "Best School"
+# This script displays "Best School" 10 times and shows iteration numbers
+
+for i in {1..10}; do
+  echo "$i: Best School"
 done
