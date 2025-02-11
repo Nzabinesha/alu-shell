@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# This script displays "Best School" 10 times, and for the 9th iteration, it also displays "Hi".
+# This script prints "Best School" 10 times, but on the 9th iteration, it also prints "Hi"
 
-for i in {1..10}
-do
-  if [ $i -eq 9 ]; then
-    echo "Best School"
-    echo "Hi"
+n=1
+while [ "$n" -le 10 ]; do
+  if [ "$n" -eq 9 ]; then
+    echo -e "Best School\nHi"
   else
     echo "Best School"
   fi
+  n=$((n + 1))
 done
