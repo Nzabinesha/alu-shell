@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# This script displays specific messages for the 4th, 9th, and 17th iterations.
+
 i=1
 while [ $i -le 20 ]
 do
