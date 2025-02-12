@@ -1,14 +1,22 @@
-#!/usr/bin/env bash
-# This script displays specific messages for the 4th, 9th, and 17th iterations.
+#!/bin/bash
 
+# Initialize a counter variable
 i=1
-while [ $i -le 20 ]
-do
+
+# Use a while loop to iterate from 1 to 20
+while [ $i -le 20 ]; do
+  echo "$i"  # Print the current number
   case $i in
-    4) echo "bad luck from China";;
-    9) echo "bad luck from Japan";;
-    17) echo "bad luck from Italy";;
-    *) echo "$i";;
+    4)
+      echo "bad luck from China"
+      ;;
+    9)
+      echo "bad luck from Japan"
+      ;;
+    17)
+      echo "bad luck from Italy"
+      ;;
   esac
-  ((i++))
+  i=$((i + 1))  # Increment the counter
 done
+
