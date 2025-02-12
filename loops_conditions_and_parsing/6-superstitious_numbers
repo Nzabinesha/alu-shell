@@ -1,9 +1,7 @@
-#!/bin/bash
-
-# Initialize a counter variable
+#!/usr/bin/env bash
+#initialize a counter variable
 i=1
 
-# Use a while loop to iterate from 1 to 20
 while [ $i -le 20 ]; do
   echo "$i"  # Print the current number
   case $i in
