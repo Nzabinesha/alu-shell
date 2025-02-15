@@ -18,12 +18,12 @@ case "$1" in
         fi
         ;;
     restart)
-        $0 stop
-        $0 start
-        echo "manage_my_process restarted"
-        ;;
-    *)
+    $0 stop > /dev/null 2>&1
+    $0 start > /dev/null 2>&1
+    echo "manage_my_process restarted"
+    ;;
+   *)
         echo "Usage: manage_my_process {start|stop|restart}"
         exit 1
         ;;
-esac
+esac 
