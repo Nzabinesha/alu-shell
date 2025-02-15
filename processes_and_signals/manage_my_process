@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# manage_my_process script with logging
+echo "Process started at $(date)" >> /tmp/my_process.log
+
+# Ensure process name appears correctly
+exec > /dev/null 2>&1
+exec bash -c 'while true; do echo "I am alive!" >> /tmp/my_process; sleep 2; done'
+
