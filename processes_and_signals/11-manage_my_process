@@ -1,7 +1,29 @@
 #!/usr/bin/env bash
-# manage_my_process script with logging
-echo "Process started at $(date)" >> /tmp/my_process.log
-while true; do
-    echo "I am alive!" >> /tmp/my_process
-    sleep 2
-done
+
+PID_FILE="/var/run/my_process.pid"
+PROCESS_SCRIPT="/path/to/manage_my_process"
+
+case "$1" in
+    start)
+        nohup bash "$PROCESS_SCRIPT" &> /dev/null &
+        echo $! > "$PID_FILE"
+        echo "manage_my_process started"
+        ;;
+    stop)
+        if [ -f "$PID_FILE" ]; then
+            kill "$(cat "$PID_FILE")" && rm -f "$PID_FILE"
+            echo "manage_my_process stopped"
+        else
+            echo "Process not running"
+        fi
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        exit 1
+        ;;
+esac
