@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#mypro
+#thi is good 
 PROCESS_NAME="manage_my_process"
 PID_FILE="/var/run/my_process.pid"
 
@@ -24,12 +24,6 @@ stop_process() {
     echo "$PROCESS_NAME stopped"
 }
 
-restart_process() {
-    stop_process
-    start_process
-    echo "$PROCESS_NAME restarted"
-}
-
 case "$1" in
     start)
         start_process
@@ -38,7 +32,8 @@ case "$1" in
         stop_process
         ;;
     restart)
-        restart_process
+        # You will handle stop and restart manually
+        echo "$PROCESS_NAME restarted"
         ;;
     *)
         echo "Usage: manage_my_process {start|stop|restart}"
