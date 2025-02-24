@@ -1,43 +1,33 @@
 #!/usr/bin/env bash
-#thi is good 
+#Script
+
 PROCESS_NAME="manage_my_process"
 PID_FILE="/var/run/my_process.pid"
 
-start_process() {
-    if [ -f "$PID_FILE" ]; then
-        echo "$PROCESS_NAME is already running."
-        exit 1
-    fi
-    
-    nohup ./$PROCESS_NAME &> /dev/null &
-    echo $! > "$PID_FILE"
-    echo "$PROCESS_NAME started"
-}
-
-stop_process() {
-    if [ ! -f "$PID_FILE" ]; then
-        echo "$PROCESS_NAME is not running."
-        exit 1
-    fi
-
-    kill "$(cat "$PID_FILE")" && rm -f "$PID_FILE"
-    echo "$PROCESS_NAME stopped"
-}
-
 case "$1" in
     start)
-        start_process
+        nohup ./$PROCESS_NAME > /dev/null 2>&1 &
+        echo $! > $PID_FILE
+        echo "manage_my_process started"
         ;;
     stop)
-        stop_process
+        if [ -f "$PID_FILE" ]; then
+            kill "$(cat $PID_FILE)" && rm -f "$PID_FILE"
+            echo "manage_my_process stopped"
+        else
+            echo "No process found to stop."
+        fi
         ;;
     restart)
-        # You will handle stop and restart manually
-        echo "$PROCESS_NAME restarted"
+        if [ -f "$PID_FILE" ]; then
+            kill "$(cat $PID_FILE)" && rm -f "$PID_FILE"
+        fi
+        nohup ./$PROCESS_NAME > /dev/null 2>&1 &
+        echo $! > $PID_FILE
+        echo "manage_my_process restarted"
         ;;
     *)
         echo "Usage: manage_my_process {start|stop|restart}"
         exit 1
         ;;
 esac
-
